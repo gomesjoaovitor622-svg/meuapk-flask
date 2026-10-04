@@ -24,6 +24,11 @@ def contato():
     return render_template('t_contato.html')
 
 
+@meu_site.route('/login')
+def login():
+    return render_template('t_login.html')
+
+
 @meu_site.route('/usuario')
 def dados_usuario():
     dados_usu = {'profissao': 'Estudante', 'disciplina': 'Desenvolvimento Web III'}
