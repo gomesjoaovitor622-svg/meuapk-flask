@@ -30,12 +30,23 @@ def login():
     return render_template('t_login.html')
 
 
+tabelaUsuarios = {
+    'joao': 'flask2026',
+    'alunoIFRO': 'flask2026',
+    'visitante': 'flask2026',
+}
+
+
+def verificar_login(login, senha):
+    return login in tabelaUsuarios and tabelaUsuarios[login] == senha
+
+
 @meu_site.route('/autenticar', methods=['GET', 'POST'])
 def autenticar():
     usuario = request.form.get('nome_usuario') if request.method == 'POST' else request.args.get('nome_usuario')
     senha = request.form.get('senha') if request.method == 'POST' else request.args.get('senha')
-    if usuario == 'admin' and senha == 'ifro':
-        return f'usuario: {usuario} e senha correta. Acesso permitido!'
+    if verificar_login(usuario, senha):
+        return f'Login e senha corretos. Acesso permitido para {usuario}!'
     flash('Login ou senha inválidos!')
     return redirect('/login')
 
@@ -58,3 +69,9 @@ def saudacoes(nome):
 
 if __name__ == '__main__':
     meu_site.run(port=7000)
+
+
+@meu_site.route('/novocadastro/', methods=['POST'])
+def cadastro_usuario():
+    nome_usuario = request.form.get('nome_usuario', '')
+    return render_template('t_cadastro.html', nome_login=nome_usuario)
