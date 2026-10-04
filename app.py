@@ -67,11 +67,12 @@ def saudacoes(nome):
     return f'Boa noite, {nome}! Tudo bem?'
 
 
-if __name__ == '__main__':
-    meu_site.run(port=7000)
-
 
 @meu_site.route('/novocadastro/', methods=['POST'])
 def cadastro_usuario():
     nome_usuario = request.form.get('nome_usuario', '')
     return render_template('t_cadastro.html', nome_login=nome_usuario)
+
+
+if __name__ == '__main__':
+    meu_site.run(port=7000)

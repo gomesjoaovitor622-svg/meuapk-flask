@@ -3,17 +3,25 @@
 {% block conteudo %}
 {% set mensagens = get_flashed_messages() %}
 {% if mensagens %}<div class="mensagens-flash"><ul>{% for msg in mensagens %}<li>{{ msg }}</li>{% endfor %}</ul></div>{% endif %}
-    <form action="/autenticar" method="POST" > 
-        <!-- 
-
-        ao clickar no botão OK, no submit vai para a rota /autenticar -->
-        <!-- Quando trabalha com métodos GET (padrão) ou POST (declara method) --> 
+    <form action="/autenticar" method="POST" id="formLogin">
         <br/><br/>
-       
-        Usuário: <input type = "text" name="nome_usuario" ><br/><br/>
-        Senha  : <input type = "password" name="senha"><br/><br/>
-        <button type = "submit">OK</button>
+        Usuário: <input type="text" id="nome_usuario" name="nome_usuario" required><br/><br/>
+        Senha: <input type="password" name="senha" required><br/><br/>
+        <button type="submit">OK</button>
     </form>
+
+    <br>
+    <form action="/novocadastro/" method="POST" onsubmit="copiarUsuarioCadastro()">
+        <input type="hidden" name="nome_usuario" id="nome_usuario_cadastro">
+        <button type="submit">Novo Cadastro</button>
+    </form>
+
+    <script>
+        function copiarUsuarioCadastro() {
+            document.getElementById("nome_usuario_cadastro").value =
+                document.getElementById("nome_usuario").value;
+        }
+    </script>
 
 {% endblock %}
 
