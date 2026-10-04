@@ -1,6 +1,7 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, flash, redirect
 
 meu_site = Flask(__name__, template_folder='t_templates')
+meu_site.config['SECRET_KEY'] = 'atividade-flask-joao-vitor'
 
 
 @meu_site.route('/ola')
@@ -33,7 +34,10 @@ def login():
 def autenticar():
     usuario = request.form.get('nome_usuario') if request.method == 'POST' else request.args.get('nome_usuario')
     senha = request.form.get('senha') if request.method == 'POST' else request.args.get('senha')
-    return f'usuario: {usuario} e senha: {senha} recebidos com sucesso!'
+    if usuario == 'admin' and senha == 'ifro':
+        return f'usuario: {usuario} e senha correta. Acesso permitido!'
+    flash('Login ou senha inválidos!')
+    return redirect('/login')
 
 
 @meu_site.route('/usuario')
