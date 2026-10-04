@@ -1,0 +1,100 @@
+.imgquadrada{
+    width: 70px;
+    height: 70px;
+}
+
+.mensagens-flash {
+    color: #f39797;
+    background-color: #f6f6f8;
+    padding: 10px;
+    border-radius: 5px;
+    margin: 10px 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 50px;
+}
+
+button:hover {
+    background-color: #45a049;   /* Cor de fundo ao passar o mouse */
+}
+
+/* Estilo para o parágrafo */
+p {
+    color: #f39797;
+    /*color: #333;               /* Cor do texto */
+    font-size: 18px;             /* Tamanho da fonte */
+    font-family: Arial, sans-serif; /* Fonte do texto */
+    line-height: 1.5;            /* Espaçamento entre linhas */
+    margin: 10px 0;              /* Margem acima e abaixo do parágrafo */
+}
+
+/*  Para alinhar os campos (rótulos e caixas de texto) em um formulário HTML */
+
+/* Formulário */
+form {
+    display: flex;
+    flex-direction: column;
+    max-width: 300px;
+    margin: auto;
+
+    padding: 15px;
+
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+}
+
+/* Login: e Senha: */
+form label {
+    margin-top: 5px;
+    margin-bottom: 4px;
+}
+
+/* Campos Login e Senha */
+input[type="text"],
+input[type="password"] {
+    width: 100%;
+
+    /* Faz padding e borda entrarem nos 100% */
+    box-sizing: border-box;
+
+    padding: 8px;
+    margin-bottom: 12px;
+
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+/* Botão OK */
+input[type="submit"] {
+    width: 100%;
+    box-sizing: border-box;
+
+    padding: 6px;
+    margin-top: 5px;
+
+    cursor: pointer;
+}
+
+input[type="submit"]:hover {
+    background-color: #45a049;
+}
+
+
+#mensagem {
+    margin-top: 20px;
+    padding: 10px;
+    border-radius: 5px;
+    display: none;
+}
+.sucesso {
+    background-color: #d4edda;
+    color: #155724;
+}
+.erro {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+
