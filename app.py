@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 
 meu_site = Flask(__name__, template_folder='t_templates')
 
@@ -27,6 +27,13 @@ def contato():
 @meu_site.route('/login')
 def login():
     return render_template('t_login.html')
+
+
+@meu_site.route('/autenticar', methods=['GET', 'POST'])
+def autenticar():
+    usuario = request.form.get('nome_usuario') if request.method == 'POST' else request.args.get('nome_usuario')
+    senha = request.form.get('senha') if request.method == 'POST' else request.args.get('senha')
+    return f'usuario: {usuario} e senha: {senha} recebidos com sucesso!'
 
 
 @meu_site.route('/usuario')
