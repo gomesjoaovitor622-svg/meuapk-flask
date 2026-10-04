@@ -1,43 +1,39 @@
 from flask import Flask, render_template
 
-meu_site = Flask(__name__)
+meu_site = Flask(__name__, template_folder='t_templates')
 
 
-@meu_site.route('/')
 @meu_site.route('/ola')
 def raiz():
-    return render_template('homepage.html')
+    return render_template('t_index.html', nome='Turma 2026')
 
 
 @meu_site.route('/ola/<id>')
 def saudacao(id):
-    return render_template('homepage_nome.html', campoNome=id)
+    return render_template('t_index.html', nome=id)
 
 
+@meu_site.route('/')
 @meu_site.route('/index')
 def index():
-    return render_template('index.html')
+    return render_template('t_index.html', nome='Turma 2026')
 
 
 @meu_site.route('/contato')
 def contato():
-    return render_template('contato.html')
+    return render_template('t_contato.html')
 
 
 @meu_site.route('/usuario')
 def dados_usuario():
-    dados_usu = {
-        'nome': 'Joao Vitor',
-        'profissao': 'Estudante',
-        'disciplina': 'Desenvolvimento Web III',
-    }
-    return render_template('usuario.html', dados=dados_usu)
+    dados_usu = {'profissao': 'Estudante', 'disciplina': 'Desenvolvimento Web III'}
+    return render_template('t_usuario.html', nome='Joao Vitor', dados=dados_usu)
 
 
 @meu_site.route('/usuario/<p_nome>/<p_profissao>/<p_disciplina>')
 def dados_usuario2(p_nome, p_profissao, p_disciplina):
-    dados_usu = {'nome': p_nome, 'profissao': p_profissao, 'disciplina': p_disciplina}
-    return render_template('usuario.html', dados=dados_usu)
+    dados_usu = {'profissao': p_profissao, 'disciplina': p_disciplina}
+    return render_template('t_usuario.html', nome=p_nome, dados=dados_usu)
 
 
 def saudacoes(nome):
