@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, render_template
 
 meu_site = Flask(__name__)
 
@@ -6,19 +6,27 @@ meu_site = Flask(__name__)
 @meu_site.route('/')
 @meu_site.route('/ola')
 def raiz():
-    return 'Olá, Turma 2026!'
+    return render_template('homepage.html')
+
+
+@meu_site.route('/index')
+def index():
+    return render_template('index.html')
 
 
 @meu_site.route('/contato')
 def contato():
-    return 'e-mail: joaovitor@ifro.edu.br'
+    return render_template('contato.html')
 
 
-@meu_site.route('/rota2')
-def rota2():
-    resposta = '<H3>Olá, Turma 2026!</H3>'
-    resposta += '<H4>Sou a rota 2</H4>'
-    return resposta
+@meu_site.route('/usuario')
+def dados_usuario():
+    dados_usu = {
+        'nome': 'Joao Vitor',
+        'profissao': 'Estudante',
+        'disciplina': 'Desenvolvimento Web III',
+    }
+    return render_template('usuario.html', dados=dados_usu)
 
 
 def saudacoes(nome):
