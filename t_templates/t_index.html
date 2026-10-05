@@ -1,8 +1,30 @@
 {% extends 'base.html' %}
-<!-- Diretiva do Flask para indicar que esta página tem um template chamado t_base.html -->
-
 {% block conteudo %}
+<section class="hero">
+    <span class="eyebrow">Aplicação Flask · Git + GitHub</span>
+    <h1>Olá, <span>{{ nome }}</span>.<br>Seu projeto web ganhou uma nova cara.</h1>
+    <p>Uma aplicação criada para praticar rotas, templates Jinja2, autenticação, herança de páginas e versionamento com Git e GitHub.</p>
+    <div class="actions">
+        <a class="btn" href="{{ url_for('login') }}">Entrar no sistema →</a>
+        <a class="btn btn-secondary" href="{{ url_for('dados_usuario') }}">Ver perfil</a>
+    </div>
+</section>
 
-    <p>Seja bem-vindo(a) {{nome}}</p>
-
-{% endblock %}  
+<section class="cards">
+    <article class="card">
+        <div class="card-icon">⚡</div>
+        <h3>Flask</h3>
+        <p>Rotas e requisições organizadas em uma aplicação Python simples e objetiva.</p>
+    </article>
+    <article class="card">
+        <div class="card-icon">◈</div>
+        <h3>Jinja2</h3>
+        <p>Templates com herança por meio de <strong>base.html</strong>, mantendo a interface consistente.</p>
+    </article>
+    <article class="card">
+        <div class="card-icon">⌘</div>
+        <h3>GitHub</h3>
+        <p>Histórico de versões, branches e commits para acompanhar a evolução do projeto.</p>
+    </article>
+</section>
+{% endblock %}

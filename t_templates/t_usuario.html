@@ -1,15 +1,14 @@
 {% extends 'base.html' %}
- 
 {% block conteudo %}
-
-<h2>Olá, {{nome}} </h2>
-<p>
-    <!-- 'static' é a pasta do projeto onde copio as imagens -->
-    <img class="imgquadrada" src = "{{ url_for ('static', filename = 'img/professora.svg') }}" >
-    
-    <br>
-    <b>Profissão: </b> {{ dados['profissao']  }} <br/>
-    <b>Disciplina: </b> {{ dados['disciplina']  }}
-</p>
-
-{% endblock %}  
+<section class="page-card">
+    <span class="page-kicker">Perfil do usuário</span>
+    <h2>Olá, {{ nome }} 👋</h2>
+    <div class="profile">
+        <img class="imgquadrada" src="{{ url_for('static', filename='img/professora.svg') }}" alt="Perfil">
+        <div class="profile-data">
+            <div class="profile-row"><span>Profissão</span><strong>{{ dados['profissao'] }}</strong></div>
+            <div class="profile-row"><span>Disciplina</span><strong>{{ dados['disciplina'] }}</strong></div>
+        </div>
+    </div>
+</section>
+{% endblock %}

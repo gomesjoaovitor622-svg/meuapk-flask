@@ -1,27 +1,42 @@
 {% extends 'base.html' %}
-
 {% block conteudo %}
-{% set mensagens = get_flashed_messages() %}
-{% if mensagens %}<div class="mensagens-flash"><ul>{% for msg in mensagens %}<li>{{ msg }}</li>{% endfor %}</ul></div>{% endif %}
-    <form action="/autenticar" method="POST" id="formLogin">
-        <br/><br/>
-        Usuário: <input type="text" id="nome_usuario" name="nome_usuario" required><br/><br/>
-        Senha: <input type="password" name="senha" required><br/><br/>
-        <button type="submit">OK</button>
+<section class="page-card form-card">
+    <span class="page-kicker">Acesso seguro</span>
+    <h2>Entrar no sistema</h2>
+    <p>Use seus dados de acesso para continuar.</p>
+
+    {% set mensagens = get_flashed_messages() %}
+    {% if mensagens %}
+    <div class="mensagens-flash">
+        <ul>{% for msg in mensagens %}<li>{{ msg }}</li>{% endfor %}</ul>
+    </div>
+    {% endif %}
+
+    <form action="{{ url_for('autenticar') }}" method="POST" id="formLogin">
+        <div class="form-group">
+            <label for="nome_usuario">Usuário</label>
+            <input type="text" id="nome_usuario" name="nome_usuario" placeholder="Digite seu usuário" autocomplete="username" required>
+        </div>
+        <div class="form-group">
+            <label for="senha">Senha</label>
+            <input type="password" id="senha" name="senha" placeholder="Digite sua senha" autocomplete="current-password" required>
+        </div>
+        <div class="form-actions">
+            <button type="submit">Entrar</button>
+        </div>
     </form>
 
-    <br>
-    <form action="/novocadastro/" method="POST" onsubmit="copiarUsuarioCadastro()">
+    <form action="{{ url_for('cadastro_usuario') }}" method="POST" onsubmit="copiarUsuarioCadastro()">
         <input type="hidden" name="nome_usuario" id="nome_usuario_cadastro">
-        <button type="submit">Novo Cadastro</button>
+        <div class="form-actions" style="margin-top:10px">
+            <button class="btn-secondary" type="submit">Criar novo cadastro</button>
+        </div>
     </form>
+</section>
 
-    <script>
-        function copiarUsuarioCadastro() {
-            document.getElementById("nome_usuario_cadastro").value =
-                document.getElementById("nome_usuario").value;
-        }
-    </script>
-
+<script>
+function copiarUsuarioCadastro() {
+    document.getElementById("nome_usuario_cadastro").value = document.getElementById("nome_usuario").value;
+}
+</script>
 {% endblock %}
-

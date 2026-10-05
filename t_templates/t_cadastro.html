@@ -1,6 +1,13 @@
 {% extends 'base.html' %}
 {% block conteudo %}
-<h2>Novo cadastro</h2>
-<p>Cadastro iniciado para o usuário: <strong>{{ nome_login or 'novo usuário' }}</strong></p>
-<p>Esta tela completa o fluxo demonstrado na versão 8 da aula.</p>
+<section class="page-card success-box">
+    <div class="success-icon">✓</div>
+    <span class="page-kicker">Cadastro</span>
+    <h2>Novo cadastro</h2>
+    <p>O fluxo de cadastro foi iniciado para <strong>{{ nome_login or 'novo usuário' }}</strong>.</p>
+    <p>Esta tela completa a funcionalidade demonstrada na versão 8 da aula.</p>
+    <div class="actions" style="justify-content:center">
+        <a class="btn" href="{{ url_for('login') }}">Voltar para o login</a>
+    </div>
+</section>
 {% endblock %}

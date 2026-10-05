@@ -3,29 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+    <meta name="theme-color" content="#080b14">
     <title>Atividade Flask — GitHub</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/estilo.css') }}">
-
 </head>
 <body>
-    
-    <!-- <img src="{{ url_for('static', filename='img/logo.svg') }}" alt="Logo" width="70" height="70"> -->
-    <img class = "imgquadrada" src="{{ url_for('static', filename='img/logo.svg') }}" alt="Logo" >
-    <br>
-    <nav>
-        <ul>
-            <a href="{{ url_for('index') }}">Página Inicial</a>
-            <a href="{{ url_for('contato') }}">Contatos</a>
-            <a href="{{ url_for('dados_usuario') }}">Perfil do Usuário</a>
-            <a href="{{ url_for('login') }}">Login</a>
-        </ul>
-    </nav>
+    <div class="app-shell">
+        <header class="site-header">
+            <a class="brand" href="{{ url_for('index') }}">
+                <img class="imgquadrada" src="{{ url_for('static', filename='img/logo.svg') }}" alt="Logo Flask">
+                <span class="brand-copy">
+                    <span class="brand-title">FlaskLab</span>
+                    <span class="brand-subtitle">Desenvolvimento Web III</span>
+                </span>
+            </a>
+            <nav aria-label="Navegação principal">
+                <ul>
+                    <li><a href="{{ url_for('index') }}">Início</a></li>
+                    <li><a href="{{ url_for('contato') }}">Contato</a></li>
+                    <li><a href="{{ url_for('dados_usuario') }}">Perfil</a></li>
+                    <li><a href="{{ url_for('login') }}">Login</a></li>
+                </ul>
+            </nav>
+        </header>
 
-    {% block conteudo %}
+        <main>
+            {% block conteudo %}{% endblock %}
+        </main>
 
-    {% endblock %}
-
-    <h6>Desenvolvido por: Joao Vitor — Desenvolvimento Web III</h6>
+        <footer>
+            <span><strong>FlaskLab</strong> · Projeto acadêmico</span>
+            <span>Desenvolvido por João Vitor — Desenvolvimento Web III</span>
+        </footer>
+    </div>
 </body>
 </html>

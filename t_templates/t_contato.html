@@ -1,9 +1,18 @@
 {% extends 'base.html' %}
-<!-- Diretiva do Flask para indicar que esta página tem um template chamado base.html -->
-
 {% block conteudo %}
-    <h3>Meus dados (versão fixa)</h3>
-    <p>e-mail  : soutsi@ifro.edu.br</p>
-    <p>telefone: (69) 3225.4837</p>
-
-{% endblock %} 
+<section class="page-card">
+    <span class="page-kicker">Fale comigo</span>
+    <h2>Contato</h2>
+    <p>Informações de contato utilizadas no projeto da disciplina.</p>
+    <div class="contact-grid">
+        <div class="contact-item">
+            <div class="contact-label">E-mail</div>
+            <div class="contact-value">soutsi@ifro.edu.br</div>
+        </div>
+        <div class="contact-item">
+            <div class="contact-label">Telefone</div>
+            <div class="contact-value">(69) 3225.4837</div>
+        </div>
+    </div>
+</section>
+{% endblock %}

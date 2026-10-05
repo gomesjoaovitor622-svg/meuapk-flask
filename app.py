@@ -46,7 +46,7 @@ def autenticar():
     usuario = request.form.get('nome_usuario') if request.method == 'POST' else request.args.get('nome_usuario')
     senha = request.form.get('senha') if request.method == 'POST' else request.args.get('senha')
     if verificar_login(usuario, senha):
-        return f'Login e senha corretos. Acesso permitido para {usuario}!'
+        return render_template('t_sucesso.html', usuario=usuario)
     flash('Login ou senha inválidos!')
     return redirect('/login')
 
