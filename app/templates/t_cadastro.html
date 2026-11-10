@@ -7,7 +7,7 @@
     <p>O fluxo de cadastro foi iniciado para <strong>{{ nome_login or 'novo usuário' }}</strong>.</p>
     <p>Esta tela completa a funcionalidade demonstrada na versão 8 da aula.</p>
     <div class="actions" style="justify-content:center">
-        <a class="btn" href="{{ url_for('login') }}">Voltar para o login</a>
+        <a class="btn" href="{{ url_for('auth.login') }}">Voltar para o login</a>
     </div>
 </section>
 {% endblock %}

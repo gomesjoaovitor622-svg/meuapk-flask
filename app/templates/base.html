@@ -10,7 +10,7 @@
 <body>
     <div class="app-shell">
         <header class="site-header">
-            <a class="brand" href="{{ url_for('index') }}">
+            <a class="brand" href="{{ url_for('main.index') }}">
                 <img class="imgquadrada" src="{{ url_for('static', filename='img/logo.svg') }}" alt="Logo Flask">
                 <span class="brand-copy">
                     <span class="brand-title">FlaskLab</span>
@@ -19,10 +19,10 @@
             </a>
             <nav aria-label="Navegação principal">
                 <ul>
-                    <li><a href="{{ url_for('index') }}">Início</a></li>
-                    <li><a href="{{ url_for('contato') }}">Contato</a></li>
-                    <li><a href="{{ url_for('dados_usuario') }}">Perfil</a></li>
-                    <li><a href="{{ url_for('login') }}">Login</a></li>
+                    <li><a href="{{ url_for('main.index') }}">Início</a></li>
+                    <li><a href="{{ url_for('main.contato') }}">Contato</a></li>
+                    <li><a href="{{ url_for('usuario.dados_usuario') }}">Perfil</a></li>
+                    <li><a href="{{ url_for('auth.login') }}">Login</a></li>
                 </ul>
             </nav>
         </header>

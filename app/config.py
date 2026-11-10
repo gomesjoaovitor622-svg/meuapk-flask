@@ -7,6 +7,11 @@ Nenhum segredo vive no código: tudo vem de variáveis de ambiente
 import os
 from datetime import timedelta
 
+from dotenv import load_dotenv
+
+# Carrega `.env` antes de ler qualquer variável de ambiente.
+load_dotenv()
+
 
 def _bool(nome: str, padrao: bool = False) -> bool:
     return os.getenv(nome, str(padrao)).strip().lower() in {"1", "true", "sim", "yes"}

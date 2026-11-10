@@ -5,8 +5,8 @@
     <h1>Olá, <span>{{ nome }}</span>.<br>Seu projeto web ganhou uma nova cara.</h1>
     <p>Uma aplicação criada para praticar rotas, templates Jinja2, autenticação, herança de páginas e versionamento com Git e GitHub.</p>
     <div class="actions">
-        <a class="btn" href="{{ url_for('login') }}">Entrar no sistema →</a>
-        <a class="btn btn-secondary" href="{{ url_for('dados_usuario') }}">Ver perfil</a>
+        <a class="btn" href="{{ url_for('auth.login') }}">Entrar no sistema →</a>
+        <a class="btn btn-secondary" href="{{ url_for('usuario.dados_usuario') }}">Ver perfil</a>
     </div>
 </section>
 
