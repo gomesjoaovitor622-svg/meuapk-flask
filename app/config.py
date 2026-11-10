@@ -52,7 +52,7 @@ class DevConfig(Config):
 
 class TestConfig(Config):
     TESTING = True
-    SECRET_KEY = "chave-de-teste-nao-use-em-producao"  # noqa: S105
+    SECRET_KEY = "chave-de-teste-nao-use-em-producao"  # noqa: S105  # pragma: allowlist secret
     WTF_CSRF_ENABLED = False
     SQLALCHEMY_DATABASE_URI = "sqlite:///:memory:"
     RATELIMIT_ENABLED = False

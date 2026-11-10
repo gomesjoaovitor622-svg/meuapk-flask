@@ -49,8 +49,10 @@ fetchExchangeRate();
 ////////////////////////////////////////////////////////////////////////////////////////////////
 // chamada de API que precisa de argumentos (passagem de valor aos parâmetros)
 
-// chave de API da OpenWeatherMap. Na variável apiKey coloquei a minha e posso desativar
-const apiKey = 'fd9ec00118bb6f4d51c88f56edd51400'; //sua_chave_api_aqui';
+// chave de API da OpenWeatherMap.
+// NUNCA comite a chave real: use uma variável de ambiente no backend ou
+// preencha este valor apenas localmente (o arquivo está versionado).
+const apiKey = ''; // defina localmente; não versione a chave
 
 // Função para buscar a previsão do tempo
 async function fetchWeather(cidade) {
