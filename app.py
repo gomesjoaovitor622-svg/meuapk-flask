@@ -1,7 +1,14 @@
+import os
+import secrets
+
 from flask import Flask, render_template, request, flash, redirect
 
-meu_site = Flask(__name__, template_folder='t_templates')
-meu_site.config['SECRET_KEY'] = 'atividade-flask-joao-vitor'
+meu_site = Flask(
+    __name__,
+    template_folder='app/templates',
+    static_folder='app/static',
+)
+meu_site.config['SECRET_KEY'] = os.environ.get('SECRET_KEY') or secrets.token_hex(32)
 
 
 @meu_site.route('/ola')
