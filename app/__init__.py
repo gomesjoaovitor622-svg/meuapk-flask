@@ -3,6 +3,7 @@
 import os
 
 from flask import Flask, jsonify
+from flask_wtf.csrf import CSRFError
 
 from .config import CONFIGS
 from .extensions import csrf, db, limiter, migrate
@@ -48,5 +49,9 @@ def create_app(config_name: str | None = None) -> Flask:
     @app.errorhandler(500)
     def erro_interno(_erro):
         return jsonify(erro="erro interno"), 500
+
+    @app.errorhandler(CSRFError)
+    def csrf_invalido(erro):
+        return jsonify(erro="requisicao invalida", motivo=erro.description), 400
 
     return app

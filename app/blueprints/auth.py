@@ -1,22 +1,14 @@
-"""Autenticação.
+"""Autenticação: login por POST, sessão e logout."""
 
-Fase 2: refatoração pura — a tabela em memória e a comparação de senha em
-texto puro serão substituídas por banco + hash na Fase 3.
-"""
+from flask import Blueprint, flash, redirect, render_template, request, session, url_for
 
-from flask import Blueprint, flash, redirect, render_template, request, url_for
+from ..extensions import db, limiter
+from ..models import Usuario
+from ..security import conferir_senha
 
 bp = Blueprint("auth", __name__)
 
-tabela_usuarios = {
-    "joao": "flask2026",
-    "alunoIFRO": "flask2026",
-    "visitante": "flask2026",
-}
-
-
-def verificar_login(login: str, senha: str) -> bool:
-    return tabela_usuarios.get(login) == senha
+MENSAGEM_CREDENCIAL_INVALIDA = "Login ou senha inválidos!"
 
 
 @bp.get("/login")
@@ -24,17 +16,28 @@ def login():
     return render_template("t_login.html")
 
 
-@bp.route("/autenticar", methods=["GET", "POST"])
+@bp.post("/autenticar")
+@limiter.limit("5 per minute")
 def autenticar():
-    if request.method == "POST":
-        usuario = request.form.get("nome_usuario")
-        senha = request.form.get("senha")
-    else:
-        usuario = request.args.get("nome_usuario")
-        senha = request.args.get("senha")
+    usuario = (request.form.get("nome_usuario") or "").strip()
+    senha = request.form.get("senha") or ""
 
-    if verificar_login(usuario, senha):
-        return render_template("t_sucesso.html", usuario=usuario)
+    registro = db.session.scalar(
+        db.select(Usuario).where(Usuario.nome_usuario == usuario, Usuario.ativo.is_(True))
+    )
 
-    flash("Login ou senha inválidos!")
+    if registro is not None and conferir_senha(registro.senha_hash, senha):
+        session.clear()
+        session["usuario"] = registro.nome_usuario
+        session.permanent = True
+        return render_template("t_sucesso.html", usuario=registro.nome_usuario)
+
+    flash(MENSAGEM_CREDENCIAL_INVALIDA)
     return redirect(url_for("auth.login"))
+
+
+@bp.post("/logout")
+def logout():
+    session.clear()
+    flash("Sessão encerrada.")
+    return redirect(url_for("main.index"))
