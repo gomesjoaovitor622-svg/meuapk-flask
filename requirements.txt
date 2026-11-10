@@ -1,1 +1,11 @@
-Flask>=3.0,<4.0
+# Dependências de execução — versões fixadas.
+# Em produção instale com: pip install --require-hashes -r requirements.txt
+# (os hashes são gerados na Fase 5; ver Makefile / CI).
+
+Flask==3.1.3
+Flask-SQLAlchemy==3.1.1
+Flask-Migrate==4.1.0
+Flask-WTF==1.3.0
+Flask-Limiter==4.1.1
+gunicorn==26.2.0
+python-dotenv==1.2.4
